@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AmazingAnalyze:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AmazingAnalyze_jar</output-path>
+    <root id="archive" name="AmazingAnalyze.jar">
+      <element id="module-output" name="AmazingAnalyze" />
+    </root>
+  </artifact>
+</component>

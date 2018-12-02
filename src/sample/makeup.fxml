@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <TextArea fx:id="TextArea_InCode" layoutX="14.0" layoutY="34.0" prefHeight="554.0" prefWidth="266.0" text="PROGRAM NOMER_15;&#10;  VAR A,I,N: INTEGER;&#10;    BEGIN&#10;      10: READ(N);&#10;          FOR I := 1 TO N+2 DO&#10;            BEGIN&#10;              N := N-I*I;&#10;              A := 4*N+50&#10;            END;&#10;          IF N-A &lt;= A/10 THEN&#10;          A := N*N ELSE GOTO 10;&#10;          WRITE(A,N)&#10;    END." />
+      <TextArea fx:id="TextArea_CryptCode" editable="false" layoutX="289.0" layoutY="34.0" prefHeight="554.0" prefWidth="266.0" />
+      <Button fx:id="Button_Analyze" layoutX="76.0" layoutY="608.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="142.0" text="Анализировать" />
+      <TextArea fx:id="TextArea_SyntaxError" editable="false" layoutX="289.0" layoutY="597.0" prefHeight="65.0" prefWidth="538.0" />
+      <Label layoutX="106.0" layoutY="10.0" text="Исходный код:" />
+      <Accordion layoutX="561.0" layoutY="34.0" prefHeight="554.0" prefWidth="266.0">
+        <panes>
+          <TitledPane animated="false" text="Служебные слова">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="TextArea_ReservedWords" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Идентификаторы">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <TextArea fx:id="TextArea_Identifiers" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                      </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Константы">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextArea fx:id="TextArea_Constants" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                    </children></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="Операции">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <TextArea fx:id="TextArea_Operations" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                      </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Разделители">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <TextArea fx:id="TextArea_Dividers" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                      </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Ошибочные лексемы">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <TextArea fx:id="TextArea_ErrorTokens" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                      </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" prefHeight="281.0" prefWidth="266.0" text="Таблица кодов лексем">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <TextArea fx:id="TextArea_TableOfTokens" editable="false" layoutX="-2.0" layoutY="-2.0" prefHeight="380.0" prefWidth="266.0" />
+                      </children></AnchorPane>
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <Label layoutX="331.0" layoutY="10.0" text="Закодированное представление:" />
+      <Label layoutX="647.0" layoutY="10.0" text="Таблицы лексем:" />
+   </children>
+</AnchorPane>
