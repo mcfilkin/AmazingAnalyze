@@ -3,7 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import sample.Analyze.Anal;
+import sample.Analyze.AnalyzeClass;
 
 import java.io.*;
 
@@ -41,20 +41,20 @@ public class Controller {
 
     @FXML
     private void click(ActionEvent event) {
-        Anal anal = new Anal();
+        AnalyzeClass analyzeClass = new AnalyzeClass();
         try {
-            anal.makeAnalyze(TextArea_InCode.getText());
+            analyzeClass.makeAnalyze(TextArea_InCode.getText());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        TextArea_CryptCode.setText(anal.getOutSource());
-        TextArea_ReservedWords.setText(anal.getTable("ReservedWords"));
-        TextArea_Identifiers.setText(anal.getTable("Identifiers"));
-        TextArea_Constants.setText(anal.getTable("Constants"));
-        TextArea_Operations.setText(anal.getTable("Operations"));
-        TextArea_Dividers.setText(anal.getTable("Dividers"));
-        TextArea_ErrorTokens.setText(anal.getTable("ErrorTokens"));
-        TextArea_SyntaxError.setText(anal.syntaxTest(anal.getListOfAllTokens())+anal.getSemanticReport());
-        TextArea_TableOfTokens.setText(anal.printListOfAllTokens());
+        TextArea_CryptCode.setText(analyzeClass.getOutSource());
+        TextArea_ReservedWords.setText(analyzeClass.getTable("ReservedWords"));
+        TextArea_Identifiers.setText(analyzeClass.getTable("Identifiers"));
+        TextArea_Constants.setText(analyzeClass.getTable("Constants"));
+        TextArea_Operations.setText(analyzeClass.getTable("Operations"));
+        TextArea_Dividers.setText(analyzeClass.getTable("Dividers"));
+        TextArea_ErrorTokens.setText(analyzeClass.getTable("ErrorTokens"));
+        TextArea_SyntaxError.setText(analyzeClass.syntaxTest(analyzeClass.getListOfAllTokens()) + analyzeClass.getSemanticReport());
+        TextArea_TableOfTokens.setText(analyzeClass.printListOfAllTokens());
     }
 }
