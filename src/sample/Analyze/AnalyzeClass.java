@@ -966,7 +966,5 @@ public class AnalyzeClass {
             res += temp.get("row") + "\t" + temp.get("type") + "\t" + temp.get("code") + "\t" + temp.get("value") + "\n";
         }
         return res;
-
     }
-
 }
