@@ -1,3 +1,2 @@
 # AmazingAnalyze
-
-Just my pascal's analyze programm.
+Just my pascal's analyze program.
