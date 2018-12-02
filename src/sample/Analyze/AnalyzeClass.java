@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.*;
 
-public class Anal {
+public class AnalyzeClass {
 
     private String[] ReservedWords = {"PROGRAM", "VAR", "REAL", "INTEGER", "BEGIN", "READ", "IF", "THEN", "GOTO", "ELSE",
             "FOR", "TO", "DO", "WRITE", "END"};
@@ -25,10 +25,10 @@ public class Anal {
     private ListIterator<HashMap<String, String>> itr;
     private String syntaxErrMessage;
 
-    private ArrayList<String> vars=new ArrayList<String>();
-    private ArrayList<String> markers=new ArrayList<String>();
-    private ArrayList<String> init=new  ArrayList<String>();
-    private ArrayList<String> init2=new  ArrayList<String>();
+    private ArrayList<String> vars = new ArrayList<String>();
+    private ArrayList<String> markers = new ArrayList<String>();
+    private ArrayList<String> init = new ArrayList<String>();
+    private ArrayList<String> init2 = new ArrayList<String>();
     private boolean stillVars = true;
     private String semanticReport = "\nСемантический тест: [ERROR]";
     private boolean syntaxTestTrue = false;
@@ -286,17 +286,6 @@ public class Anal {
         return outSource;
     }
 
-    /*dklfjlkdsflsdjfossdfhjdflksjdflkjsdldof[woefpwp[efw[ef[pweof[weof[weof[woef[wefweof[
-    sh
-    dfh
-    sdf
-    shd
-    dfh
-    dsfh
-    dg
-    dhsf
-     */
-
     public String syntaxTest(LinkedList<HashMap<String, String>> input) {
         tmp = new HashMap<>();
         itr = input.listIterator();
@@ -315,7 +304,7 @@ public class Anal {
             return "[Ошибка] строка " + tmp.get("row") + "\nПреждевременный конец программы";
 
         if (!tmp.get("type").equals("identifier")) {
-            return "[Ошибка] строка " + tmp.get("row") + "\nНазвание программы '"+tmp.get("value")+"'не удовлетворяет требованиям";
+            return "[Ошибка] строка " + tmp.get("row") + "\nНазвание программы '" + tmp.get("value") + "'не удовлетворяет требованиям";
         }
 
         if (itr.hasNext()) {
@@ -342,7 +331,7 @@ public class Anal {
             vars.clear();
             return syntaxErrMessage;
         }
-        stillVars=false;
+        stillVars = false;
 
         if (!tmp.get("value").equals("BEGIN")) {
             return "[Ошибка] строка " + tmp.get("row") + "\nОжидалось 'BEGIN', получено '" + tmp.get("value") + "'";
@@ -371,7 +360,7 @@ public class Anal {
         if (itr.hasNext()) {
             return "[Ошибка] строка " + tmp.get("row") + "\nОжидался конец программы";
         }
-        syntaxTestTrue=true;
+        syntaxTestTrue = true;
         return "Синтаксический тест:  [ OK ]";
     }
 
@@ -394,7 +383,8 @@ public class Anal {
             }
 
             if (!tmp.get("value").equals(";")) {
-                syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\nОжидалось ';'";;
+                syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\nОжидалось ';'";
+                ;
                 return false;
             } else if (itr.hasNext()) {
                 tmp = itr.next();
@@ -425,7 +415,7 @@ public class Anal {
             return false;
         }
         if (!tmp.get("type").equals("res_word")) {
-            syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'"+tmp.get("value")+"' не является типом переменных";
+            syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'" + tmp.get("value") + "' не является типом переменных";
             return false;
         }
         return true;
@@ -434,18 +424,18 @@ public class Anal {
     private boolean isListOfNames() {
         init2.clear();
         if (!tmp.get("type").equals("identifier")) {
-            syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'"+tmp.get("value") + "' не является идентификатором";
+            syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'" + tmp.get("value") + "' не является идентификатором";
             return false;
         }
-        if (!init.contains(tmp.get("value"))){
+        if (!init.contains(tmp.get("value"))) {
             init2.add(tmp.get("value"));
         }
         if (stillVars) vars.add(tmp.get("value"));
         if (!vars.contains(tmp.get("value"))) {
-            semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не объявлена!";
+            semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не объявлена!";
         }
-        if (!read && !init.contains(tmp.get("value"))  && !stillVars) {
-            semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не инициализирована!";
+        if (!read && !init.contains(tmp.get("value")) && !stillVars) {
+            semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не инициализирована!";
         }
         if (itr.hasNext()) {
             tmp = itr.next();
@@ -464,18 +454,18 @@ public class Anal {
                 return false;
             }
             if (!tmp.get("type").equals("identifier")) {
-                syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'"+tmp.get("value") + "' не является идентификатором";
+                syntaxErrMessage = "[Ошибка] строка " + tmp.get("row") + "\n'" + tmp.get("value") + "' не является идентификатором";
                 return false;
             }
-            if (!init.contains(tmp.get("value"))){
+            if (!init.contains(tmp.get("value"))) {
                 init2.add(tmp.get("value"));
             }
             if (stillVars) vars.add(tmp.get("value"));
             if (!vars.contains(tmp.get("value"))) {
-                semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не объявлена!";
+                semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не объявлена!";
             }
             if (!read && !init.contains(tmp.get("value")) && !stillVars) {
-                semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не инициализирована!";
+                semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не инициализирована!";
             }
             if (itr.hasNext()) {
                 tmp = itr.next();
@@ -489,8 +479,6 @@ public class Anal {
         }
         return true;
     }
-
-    //222222222222222222222222222222222222222222222222
 
     private boolean isBody() {
         while (true) {
@@ -528,7 +516,7 @@ public class Anal {
             }
         } else {
             if (markers.contains(tmp.get("value"))) {
-                semanticReport+="\n\t cтрока " + tmp.get("row") + ": многократное повторение метки '"+tmp.get("value")+"'";
+                semanticReport += "\n\t cтрока " + tmp.get("row") + ": многократное повторение метки '" + tmp.get("value") + "'";
             } else {
                 markers.add(tmp.get("value"));
             }
@@ -664,12 +652,12 @@ public class Anal {
             syntaxErrMessage = "конец программы";
             return false;
         }
-        read=true;
+        read = true;
         if (!isListOfNames()) {
-            read=false;
+            read = false;
             return false;
         }
-        read=false;
+        read = false;
         if (!tmp.get("value").equals(")")) {
             return false;
         }
@@ -730,7 +718,7 @@ public class Anal {
             return false;
         }
         if (!markers.contains(tmp.get("value")))
-            semanticReport+="\n\t cтрока " + tmp.get("row") + ": метка перехода '"+tmp.get("value")+"' не обявлена";
+            semanticReport += "\n\t cтрока " + tmp.get("row") + ": метка перехода '" + tmp.get("value") + "' не обявлена";
         if (itr.hasNext()) {
             tmp = itr.next();
         } else {
@@ -746,7 +734,7 @@ public class Anal {
         }
         String in = tmp.get("value");
         if (!vars.contains(tmp.get("value"))) {
-            semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не объявлена!";
+            semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не объявлена!";
         }
         if (itr.hasNext()) {
             tmp = itr.next();
@@ -808,7 +796,7 @@ public class Anal {
                 semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не объявлена!";
             }
             if (!init.contains(tmp.get("value"))) {
-                semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не инициализирована!";
+                semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не инициализирована!";
             }
         }
         return true;
@@ -899,7 +887,7 @@ public class Anal {
             init.add(in);
         }
         if (!vars.contains(tmp.get("value"))) {
-            semanticReport+="\n\t cтрока " + tmp.get("row") + ": переменная '"+tmp.get("value")+"' не объявлена!";
+            semanticReport += "\n\t cтрока " + tmp.get("row") + ": переменная '" + tmp.get("value") + "' не объявлена!";
         }
         if (itr.hasNext()) {
             tmp = itr.next();
@@ -977,8 +965,7 @@ public class Anal {
         for (HashMap<String, String> temp : listOfAllTokens) {
             res += temp.get("row") + "\t" + temp.get("type") + "\t" + temp.get("code") + "\t" + temp.get("value") + "\n";
         }
-        //return res;
-        return init.toString();
+        return res;
     }
 
 }
