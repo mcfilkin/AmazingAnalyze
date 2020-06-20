@@ -1,2 +1,2 @@
-# AmazingAnalyze
-Just my pascal's analyze program.
+# Amazing Analyze
+Pascal's code analyze program (lab for RSU)
